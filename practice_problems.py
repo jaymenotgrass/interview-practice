@@ -13,8 +13,16 @@ Output: False
 """
 
 def has_duplicates(product_ids):
-    # Your implementation here
-    pass
+    seen = set()
+    for product in product_ids:
+        if product in seen:
+            return True
+        seen.add(product)
+    return False
+
+#Since we are looking at unique values, we want to use a set to prevent any chance of a duplicate number being added.
+#We want to iterate through each number from the input given, and check the set if the number is there. 
+#If the current product matches a value in the set "seen", then it returns True because a duplicate has been found.
 
 
 """
@@ -32,15 +40,20 @@ task_queue.remove_oldest_task() → "Email follow-up"
 
 class TaskQueue:
     def __init__(self):
-        # Your initialization here
-        pass
+        self.queue = []
 
     def add_task(self, task):
-        pass
+        self.queue.append(task)
 
     def remove_oldest_task(self):
-        pass
-
+        if self.queue:
+            return self.queue.pop(0)
+        return None
+    
+#A list is being created because that's what the assignment says to manage. Then to add a task,
+#you must use the append method. And to remove the oldest task, I created an "if" statement
+#checking if there were any values in the list, and if there are, then I used the pop method to remove the value 
+#at the index value "0".
 
 """
 Problem 3: Unique Value Counter
@@ -57,10 +70,13 @@ tracker.get_unique_count() → 2
 
 class UniqueTracker:
     def __init__(self):
-        pass
+        self.values = set()
 
     def add(self, value):
-        pass
+        self.values.add(value)
 
     def get_unique_count(self):
-        pass
+        return len(self.values)
+#In this assignment I used the method of implementing a set. Since it automatically 
+#is built to not have duplicates, there is nothing that needs to be done to filter out the
+#duplicated numbers. The "unique" function just returns the length of the set because it should've automatically gotten rid of the duplicates.
